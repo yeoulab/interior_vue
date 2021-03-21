@@ -28,39 +28,39 @@
                 <v-dialog v-model="dialog" max-width="500px">
                     <v-card>
                         <v-card-text>
-                        <v-container grid-list-xs>
-                            <v-layout wrap>
-                                <v-flex xs4 sm4 md3>
-                                    <v-text-field readonly :value=editedItem.company_name></v-text-field>
-                                </v-flex>
-                                <v-flex xs4 sm4 md3>
-                                    <v-text-field readonly :value=editedItem.jongmok_code></v-text-field>
-                                </v-flex>
-                                <v-flex xs4 sm4 md3>
-                                    <v-text-field readonly :value=editedItem.start_date></v-text-field>
-                                </v-flex>
-                                <v-flex xs12 style="height: 105px">
-                                    <v-textarea label="매수이유" outlined rows="3" row-height="24"
-                                            :value=editedItem.buy_reason v-model=editedItem.buy_reason>
-                                    </v-textarea>
-                                </v-flex>
-                                <v-flex xs12 style="height: 105px">
-                                    <v-textarea label="매도시점" outlined rows="3" row-height="24"
-                                            :value=editedItem.sell_reason v-model=editedItem.sell_reason>
-                                    </v-textarea>
-                                </v-flex>
-                                <v-flex xs12 style="height: 105px">
-                                    <v-textarea label="성공요인" outlined rows="3" row-height="24"
-                                            :value=editedItem.suc_reason v-model=editedItem.suc_reason>
-                                    </v-textarea>
-                                </v-flex>
-                                <v-flex xs12 style="height: 105px">
-                                    <v-textarea label="실패이유" outlined rows="3" row-height="24"
-                                            :value=editedItem.fail_reason v-model=editedItem.fail_reason>
-                                    </v-textarea>
-                                </v-flex>
-                            </v-layout>
-                        </v-container>
+                            <v-container grid-list-xs>
+                                <v-layout wrap>
+                                    <v-flex xs4 sm4 md3>
+                                        <v-text-field readonly :value=editedItem.company_name></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs4 sm4 md3>
+                                        <v-text-field readonly :value=editedItem.jongmok_code></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs4 sm4 md3>
+                                        <v-text-field readonly :value=editedItem.start_date></v-text-field>
+                                    </v-flex>
+                                    <v-flex xs12 style="height: 105px">
+                                        <v-textarea label="매수이유" outlined rows="3" row-height="24"
+                                                :value=editedItem.buy_reason v-model=editedItem.buy_reason>
+                                        </v-textarea>
+                                    </v-flex>
+                                    <v-flex xs12 style="height: 105px">
+                                        <v-textarea label="매도시점" outlined rows="3" row-height="24"
+                                                :value=editedItem.sell_reason v-model=editedItem.sell_reason>
+                                        </v-textarea>
+                                    </v-flex>
+                                    <v-flex xs12 style="height: 105px">
+                                        <v-textarea label="성공요인" outlined rows="3" row-height="24"
+                                                :value=editedItem.suc_reason v-model=editedItem.suc_reason>
+                                        </v-textarea>
+                                    </v-flex>
+                                    <v-flex xs12 style="height: 105px">
+                                        <v-textarea label="실패이유" outlined rows="3" row-height="24"
+                                                :value=editedItem.fail_reason v-model=editedItem.fail_reason>
+                                        </v-textarea>
+                                    </v-flex>
+                                </v-layout>
+                            </v-container>
                         </v-card-text>
                         <v-card-actions>
                         <v-spacer></v-spacer>
@@ -71,13 +71,13 @@
                 </v-dialog>
                 <!-- </v-toolbar> -->
             </template>
-            <template v-slot:item.actions="{ item }">
+            <template v-slot:item.actions="{ item }">              
                 <v-icon
                     small
                     class="mr-2"
                     @click="go_to_first(item)"
                 >
-                    mdi-diamond-stone
+                    mdi-calculator
                 </v-icon>
                 <v-icon
                     small
@@ -88,10 +88,25 @@
                 </v-icon>
                 <v-icon
                     small
+                    class="mr-2"
                     @click="deleteItem(item)"
                 >
                     mdi-delete
                 </v-icon>
+                <v-icon
+                    small
+                    class="mr-2"
+                    @click="buy_item(item)"
+                >
+                    mdi-plus-thick
+                </v-icon>
+                <v-icon
+                    small
+                    class="mr-2"
+                    @click="sell_item(item)"
+                >
+                    mdi-minus-thick
+                </v-icon>                  
             </template>
         </v-data-table>
     </v-container>
@@ -123,12 +138,12 @@
                 headers: [
                     {
                         text: '종목명',
-                        align: 'start',
                         value: 'company_name',
+                        align: 'start'
                     },
                     { text: '코드', value: 'jongmok_code' },
                     { text: '시작일자', value: 'start_date' },
-                    { text: 'Actions', value: 'actions', sortable: false}
+                    { text: 'Actions', value: 'actions', sortable: false},
                 ],
                 dialog2: false,
             }
@@ -138,32 +153,49 @@
                 this.dialog2 = boolean
             },
             get_diary(){
+                console.log("get_diary")
                 this.setDialog2(true)
                 axios.get('/diary')
                 .then((result) =>{
                     this.datas = result.data
+                    //console.log(this.datas)
                     this.$store.commit('setDiaryResult',{
                           diary_result: result.data
                         })
-                    this.setDialog2(false)
+                    //console.log(result.data)
+                    this.setDialog2(false) 
                 })
                 .catch(error => {
                     console.log(error.message)
                     this.setDialog2(false)
                 })
             },
+            buy_item(data){
+                data.buy_yn='Y'
+                this.update_diary(data)
+                //this.get_diary()
+            },
+            sell_item(data){
+                data.buy_yn=''
+                this.update_diary(data)
+                //this.get_diary()
+            },
             update_diary(data){
+                console.log("update_diary")
                 axios.put('/diary', data,                    
                     ).then(res => {
                         if(res){
+                            this.get_diary()
                             console.log(res)
                         }
                     })
             },            
             go_to_first(data){
+                var mod_company_name = data.company_name.replace('(*)', '')
+
                 this.$store.commit('setStockInfo',{
                     item_code: data.jongmok_code,
-                    item_name: data.company_name,
+                    item_name: mod_company_name,
                     start_date: data.start_date,
                 })            
                 this.$router.push("/main/home");    
