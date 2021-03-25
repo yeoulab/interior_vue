@@ -382,4 +382,8 @@ export default {
 .v-progress-circular {
   margin: 1rem;
 }
+.v-list{
+  height:250px;/* or any height you want */
+  overflow-y:auto
+}
 </style>
