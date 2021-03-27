@@ -30,7 +30,7 @@ export default {
   },
   data () {
       return {
-        activeBtn: 1,
+        activeBtn: 0,
         links: [
           {btnName: 'mdi-home-variant-outline', text: '홈', route: '/main/home'},
           {btnName: 'mdi-chart-bell-curve-cumulative', text: '글로발', route: '/main/index'},
