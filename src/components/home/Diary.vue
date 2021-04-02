@@ -72,41 +72,57 @@
                 <!-- </v-toolbar> -->
             </template>
             <template v-slot:item.actions="{ item }">              
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="go_to_first(item)"
-                >
-                    mdi-calculator
-                </v-icon>
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="editItem(item)"
-                >
-                    mdi-pencil
-                </v-icon>
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="deleteItem(item)"
-                >
-                    mdi-delete
-                </v-icon>
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="buy_item(item)"
-                >
-                    mdi-plus-thick
-                </v-icon>
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="sell_item(item)"
-                >
-                    mdi-minus-thick
-                </v-icon>                  
+                <v-btn
+                    icon
+                    color="blue">
+                    <v-icon
+                        @click="buy_item(item)"
+                    >
+                        mdi-plus-thick
+                    </v-icon>
+                </v-btn>                
+                <v-btn
+                    icon
+                    color="orange">
+                    <v-icon
+                        small
+                        class="mr-2"
+                        @click="sell_item(item)"
+                    >
+                        mdi-minus-thick
+                    </v-icon>
+                </v-btn>
+                <v-btn 
+                    icon
+                    color="pink"
+                    class="px-auto mx-auto">
+                    <v-icon
+                        @click="go_to_first(item)"
+                    >
+                        mdi-calculator
+                    </v-icon>
+                </v-btn>                
+                <v-btn
+                    icon
+                    color="purple">
+                    <v-icon
+                        small
+                        @click="editItem(item)"
+                    >
+                        mdi-pencil
+                    </v-icon>
+                </v-btn>
+
+                <v-btn
+                    icon
+                    color="blue">
+                    <v-icon
+                        small
+                        @click="deleteItem(item)"
+                    >
+                        mdi-delete
+                    </v-icon>
+                </v-btn>
             </template>
         </v-data-table>
     </v-container>
@@ -218,6 +234,14 @@
                             this.get_diary()
                         }
                     })
+            },
+            getColor(company_name){
+                //alert(company_name)
+                var isStar = company_name.indexOf('*')
+
+                if( isStar > 0 ){
+                    return 'green'
+                }
             }
         },
         mounted() {

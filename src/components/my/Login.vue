@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div><v-icon @click=goBack>mdi-arrow-left</v-icon></div>
+    <!-- <div><v-icon @click=goBack>mdi-arrow-left</v-icon></div> -->
     <br>
     <div class="v-card v-card--raised v-sheet theme--light">
     <!-- <v-card class="mx-auto">     -->
@@ -63,10 +63,10 @@
           <hr class="mv-20">
           <br>
           <v-btn
-            color="success"
+            color="yellow"
             class="mr-4"
             block
-          >네이버 아이디로 로그인(todo)</v-btn>
+          >카카오 로그인</v-btn>
       </v-card-text>
       
     </div>

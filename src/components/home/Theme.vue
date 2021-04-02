@@ -13,7 +13,7 @@
                 <v-col xs6 sm4 md3>
                     <v-dialog v-model="dialog">
                         <template v-slot:activator="{ on }">
-                            <v-btn v-on="on" color="success" dense>등록</v-btn>
+                            <v-btn class="mb-2"  v-on="on" color="success" dense>등록</v-btn>
                         </template>
                         <v-card>
                             <v-card-title>테마 등록</v-card-title>
@@ -38,7 +38,9 @@
                                         <!-- <v-icon v-on:click="delete_theme(data)">mdi-minus</v-icon> -->
                                         <v-dialog v-model="dialog3" persistent max-width="230">
                                             <template v-slot:activator="{ on }">
-                                                <v-icon v-on="on" @click="setTheme(data.id)">mdi-minus</v-icon>
+                                                <v-btn icon color="red">
+                                                    <v-icon v-on="on" @click="setTheme(data.id)">mdi-minus</v-icon>
+                                                </v-btn>
                                                 <!--v-on:click="delete_theme(data)"-->
                                             </template>
                                             <v-card>
@@ -56,7 +58,7 @@
                 <v-col xs6 sm4 md3>
                         <v-dialog v-model="dialog2">
                             <template v-slot:activator="{ on }">
-                                <v-btn v-on="on" color="success" dense>등록</v-btn>
+                                <v-btn v-on="on" color="success" class="mb-2 mr-2" dense>등록</v-btn>
                             </template>
                             <v-card>
                                 <v-card-title>종목 등록</v-card-title>
@@ -81,7 +83,7 @@
                                 </v-btn>
                             </v-card>
                         </v-dialog>
-                        <v-btn color="blue" @click="calc_theme_item()">계산</v-btn>
+                        <v-btn class="mb-2" color="blue" @click="calc_theme_item()">계산</v-btn>
                     <v-card class="mx-auto" tile>
                         <v-list dense>
                             <v-subheader>종목</v-subheader>
@@ -94,7 +96,9 @@
                                     <v-dialog v-model="dialog4" persistent max-width="230">
                                         <template v-slot:activator="{ on }">
                                             <v-list-item-icon>
-                                                <v-icon v-on="on" @click="setItem(item.item_code)">mdi-eraser</v-icon>
+                                                <v-btn icon color="pink">
+                                                    <v-icon v-on="on" @click="setItem(item.item_code)">mdi-eraser</v-icon>
+                                                </v-btn>
                                             </v-list-item-icon>
                                         </template>
                                         <v-card>
@@ -128,13 +132,13 @@
                 hide-default-footer
             >
                 <template v-slot:item.actions="{ item }">
-                    <v-icon
-                        small
-                        class="mr-2"
-                        @click="go_to_first(item)"
-                    >
-                        mdi-bullseye-arrow
-                    </v-icon>
+                    <v-btn icon color="purple">
+                        <v-icon
+                            @click="go_to_first(item)"
+                        >
+                            mdi-bullseye-arrow
+                        </v-icon>
+                    </v-btn>
                 </template>
             </v-data-table>
         </v-container>

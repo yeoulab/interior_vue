@@ -57,12 +57,12 @@
                     }
                 }else if(input_value=="치킨"){
                     if( this.pwd == "0109" ){
-                        this.$router.push("/main/home");
+                        this.$router.push("/login");
                     }
                 }
                 else if(input_value=="포크"){
                     if( this.pwd == "0326" ){
-                        this.$router.push("/main/home");
+                        this.$router.push("/user");
                     }
                 }
             },

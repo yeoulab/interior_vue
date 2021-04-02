@@ -13,16 +13,26 @@ import Company from '../components/home/Company'
 import Coin from '../components/home/Coin'
 
 //import MyInfo from '../components/my/MyInfo'
-//import Login from '../components/my/Login'
-//import Register from '../components/my/Register'
+import Login from '../components/my/Login'
+import Register from '../components/my/Register'
 
 import Door from '../components/common/Door'
 import Main from '../components/common/Main'
+import User from '../components/my/User'
 
 Vue.use(Router);
 
 export default new Router({
     routes:[
+        {   path: '/login', 
+            component: Login
+        },
+        {   path: '/register', 
+            component: Register
+        },
+        {   path: '/user', 
+            component: User
+        },
         {
             path: '/main',
             component: Main,
@@ -49,14 +59,13 @@ export default new Router({
                 component: Coin
             }]
         },
-        {path: '/', component: Door},
+        {path: '/', component: Door},        
         //{path: '/home', component: Home},
         //{path: '/map', component: MapNav},
         //{path: '/contract', component: Contract},
         //{path: '/advertisement', component: AdPanel},
         //{path: '/myInfo', component: MyInfo},
-        //{path: '/login', component: Login},
-        //{path: '/register', component: Register},
+        //{path: '/login', component: Login},        
         
     ]
 })

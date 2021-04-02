@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div><v-icon @click=goBack>mdi-arrow-left</v-icon></div>
+    <!-- <div><v-icon @click=goBack>mdi-arrow-left</v-icon></div> -->
     <br>
     <div class="v-card v-card--raised v-sheet theme--light">
         <v-card-text>

@@ -43,7 +43,7 @@
             -->
             <v-row class="mb-1">                
                 <v-col xs3 sm3 md3>
-                    <v-btn small @click="getFinInfo">뉴스/공시</v-btn>
+                    <v-btn class="mx-0" small @click="getFinInfo">뉴스/공시</v-btn>
                 </v-col>
                 <v-col xs3 sm3 md3>
                     <v-btn small @click="getCompInfo">재무정보</v-btn>

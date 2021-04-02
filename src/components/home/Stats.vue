@@ -40,13 +40,15 @@
             hide-default-footer
         >
             <template v-slot:item.actions="{ item }">
-                <v-icon
-                    small
-                    class="mr-2"
-                    @click="go_to_first(item)"
-                >
-                    mdi-bullseye-arrow
-                </v-icon>
+                <v-btn
+                    icon
+                    color="blue">
+                    <v-icon
+                        @click="go_to_first(item)"
+                    >
+                        mdi-bullseye-arrow
+                    </v-icon>
+                </v-btn>
             </template>
         </v-data-table>        
     </v-container>    
