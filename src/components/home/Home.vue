@@ -148,10 +148,10 @@
                                 <td>{{data.company_detail_info.cir_stock_cnt}}</td>
                             </tr>
                             <tr>
+                                <td>시가총액</td>
+                                <td>{{data.company_detail_info.market_cap}}</td>
                                 <td>유통비율</td>
                                 <td>{{data.company_detail_info.cir_stock_ratio}}%</td>
-                                <td></td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>총거래량</td>
