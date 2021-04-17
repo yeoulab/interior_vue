@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build2" : "vue-cli-service build --dest --dest C:\\ringo_home\\01.src\\gateway\\src\\main\\resources\\static"
+    "build2" : "vue-cli-service build --dest --dest C:\\ringo_home\\01.src\\gateway\\src\\main\\resources\\static",
+    "local": "vue-cli-service serve --mode local"
   },
   "dependencies": {
     "axios": "^0.19.2",

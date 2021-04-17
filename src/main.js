@@ -15,6 +15,8 @@ axios.defaults.baseURL = 'http://34.64.147.165:8090'; // server-python
 axios.defaults.crossDomain = true;
 axios.defaults.withCredentials = true;
 
+if( process.env == 'local' ) axios.defaults.baseURL = 'http://127.0.0.1:8090'
+
 /* vuex 설치 */
 /* vue-the-mask 설치 */
 /*

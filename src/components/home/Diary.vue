@@ -158,6 +158,7 @@
                         align: 'start'
                     },
                     { text: '코드', value: 'jongmok_code' },
+                    { text: '점수', value: 'total_score' },
                     { text: '시작일자', value: 'start_date' },
                     { text: 'Actions', value: 'actions', sortable: false},
                 ],
