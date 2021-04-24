@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 
 //axios.defaults.baseURL = 'http://127.0.0.1:8070'; // java
 //axios.defaults.baseURL = 'http://127.0.0.1:8090'; // local-python
-axios.defaults.baseURL = 'http://34.64.90.165:8090'; // server-python
+axios.defaults.baseURL = 'http://13.125.241.42:8090'; // server-python
 axios.defaults.crossDomain = true;
 axios.defaults.withCredentials = true;
 
