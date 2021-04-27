@@ -74,9 +74,11 @@ export default {
                 },
                 { text: 'Code', value: 'jongmok_code' },
                 { text: 'Date', value: 'start_date' },
-                { text: 'Score', value: 'total_score'},
+                { text: 'Score-Y', value: 'year_score'},
+                { text: 'Score-Q', value: 'quarter_score'},
                 { text: 'IndAmt', value: 'ind_avg_avg_amt'},
                 { text: 'FinAmt', value: 'fin_amt'},
+                { text: 'Benefit', value: 'benefit_ratio'},
                 { text: 'Max', value: 'max_cir_ratio'},
                 { text: 'Total', value: 'tot_cir_ratio'},
                 { text: 'Cal', value: 'actions', sortable: false}
