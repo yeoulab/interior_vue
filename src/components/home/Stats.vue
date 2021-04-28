@@ -76,7 +76,7 @@ export default {
             mobileBreakpoint: 600,
             headers: [
                 {
-                    text: '종목정보',
+                    text: '종목',
                     value: 'jongmok_info'
                 },
                 { text: '재무점수(Y/Q)', value: 'score_info'},

@@ -159,11 +159,11 @@
                 page: 1,         
                 headers: [
                     {
-                        text: '종목명 / 코드 / 시작일자',
+                        text: '종목',
                         value: 'jongmok_info',
-                        align: 'start',
+                        align: 'left',
                     },
-                    { text: '점수(Y/Q)', value: 'score' },
+                    { text: '점수(Y/Q)', value: 'score' , align: 'left'},
                     { text: 'Actions', value: 'actions', sortable: false},
                 ],
                 dialog2: false,
