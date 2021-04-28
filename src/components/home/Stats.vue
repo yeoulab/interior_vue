@@ -39,6 +39,14 @@
             :items-per-page="1000"
             hide-default-footer
         >
+            <template v-slot:item.jongmok_info="{ item }">
+                <v-btn 
+                  text
+                  color="purple"
+                  @click="go_to_first(item)">
+                  {{ item.jongmok_info }}
+                </v-btn>
+            </template>        
             <template v-slot:item.actions="{ item }">
                 <v-btn
                     icon
@@ -65,23 +73,16 @@ export default {
             tot_cir_ratio: 0,
             // 아래는 데이터테이블을 위한 변수들
             search: '',
-            mobileBreakpoint: 300,
+            mobileBreakpoint: 600,
             headers: [
                 {
-                    text: 'Name',
-                    align: 'start',
-                    value: 'company_name',
+                    text: '종목정보',
+                    value: 'jongmok_info'
                 },
-                { text: 'Code', value: 'jongmok_code' },
-                { text: 'Date', value: 'start_date' },
-                { text: 'Score-Y', value: 'year_score'},
-                { text: 'Score-Q', value: 'quarter_score'},
-                { text: 'IndAmt', value: 'ind_avg_avg_amt'},
-                { text: 'FinAmt', value: 'fin_amt'},
-                { text: 'Benefit', value: 'benefit_ratio'},
-                { text: 'Max', value: 'max_cir_ratio'},
-                { text: 'Total', value: 'tot_cir_ratio'},
-                { text: 'Cal', value: 'actions', sortable: false}
+                { text: '재무점수(Y/Q)', value: 'score_info'},
+                { text: '개인평단/종가/수익율', value: 'price_info'},
+                { text: '개인비율/MAX/TOTAL', value: 'tr_info'},
+                //{ text: 'Cal', value: 'actions'},
             ],
             stats_result: [],
             dialog: false,

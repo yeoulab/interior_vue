@@ -19,10 +19,11 @@
             :headers="headers"
             :items="datas"
             :search="search"
-            class="elevation-1"
             :mobile-breakpoint="mobileBreakpoint"
-            :items-per-page="pageCount"
+            class="elevation-1"
+            :items-per-page="pageCount" 
             hide-default-footer
+            dense
         >
             <template v-slot:top>
                 <v-dialog v-model="dialog" max-width="500px">
@@ -71,6 +72,11 @@
                 </v-dialog>
                 <!-- </v-toolbar> -->
             </template>
+            <template v-slot:item.jongmok_info="{ item }">
+                <v-btn text color="pink">
+                  {{ item.jongmok_info }}
+                </v-btn>
+            </template>  
             <template v-slot:item.actions="{ item }">              
                 <v-btn
                     icon
@@ -136,7 +142,7 @@
                 datas: [],
                 dialog: false,
                 search: '',
-                mobileBreakpoint: 300,
+                mobileBreakpoint: 600,
                 pageCount: 1000,
                 editedIndex: -1,
                 editedItem:{
@@ -153,14 +159,11 @@
                 page: 1,         
                 headers: [
                     {
-                        text: '종목명',
-                        value: 'company_name',
-                        align: 'start'
+                        text: '종목명 / 코드 / 시작일자',
+                        value: 'jongmok_info',
+                        align: 'start',
                     },
-                    { text: '코드', value: 'jongmok_code' },
-                    { text: '점수-Y', value: 'year_score' },
-                    { text: '점수-Q', value: 'quarter_score'},
-                    { text: '시작일자', value: 'start_date' },
+                    { text: '점수(Y/Q)', value: 'score' },
                     { text: 'Actions', value: 'actions', sortable: false},
                 ],
                 dialog2: false,
