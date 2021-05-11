@@ -38,6 +38,7 @@
             :mobile-breakpoint="mobileBreakpoint"
             :items-per-page="1000"
             hide-default-footer
+            dense
         >
             <template v-slot:item.jongmok_info="{ item }">
                 <v-btn 
@@ -73,14 +74,15 @@ export default {
             tot_cir_ratio: 0,
             // 아래는 데이터테이블을 위한 변수들
             search: '',
-            mobileBreakpoint: 600,
+            mobileBreakpoint: 1000,
             headers: [
                 {
                     text: '종목',
                     value: 'jongmok_info'
                 },
                 { text: '재무점수(Y/Q)', value: 'score_info'},
-                { text: '개인평단/종가/수익율', value: 'price_info'},
+                { text: '기대수익률(%)', value: 'prospect_profit'},
+                { text: '외인/기관/개인/종가', value: 'price_info'},
                 { text: '개인비율/MAX/TOTAL', value: 'tr_info'},
                 //{ text: 'Cal', value: 'actions'},
             ],
