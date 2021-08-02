@@ -138,44 +138,85 @@
             <br>
             <div v-if="search_yn">
                 <v-card class="mx-auto" tile>
-                <v-simple-table dense>
-                    <template v-slot:default>
-                        <tbody>
-                            <tr>
-                                <td>총발생주식수</td>
-                                <td>{{data.company_detail_info.tot_stock_cnt}}</td>
-                                <td>유통주식수</td>
-                                <td>{{data.company_detail_info.cir_stock_cnt}}</td>
-                            </tr>
-                            <tr>
-                                <td>시가총액</td>
-                                <td>{{data.company_detail_info.market_cap}}</td>
-                                <td>유통비율</td>
-                                <td>{{data.company_detail_info.cir_stock_ratio}}%</td>
-                            </tr>
-                            <tr>
-                                <td>총거래량</td>
-                                <td>{{data.max_info.tot_tr_quant}}</td>
-                                <td>최대거래량</td>
-                                <td>{{data.max_info.max_tr_quant}}</td>
-                            </tr>
-                            <tr>
-                                <td>거래일자</td>
-                                <td>{{data.max_info.max_tr_date}}</td>
-                                <td>최대거래비율</td>
-                                <td>{{data.max_info.max_tr_ratio}}%</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">총거래량 / 유통주식수</td>
-                                <td colspan="2">{{ data.max_info.tot_cir_ratio }}%</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2">최대거래량 / 유통주식수</td>
-                                <td colspan="2">{{ data.max_info.max_cir_ratio }}%</td>
-                            </tr>
-                        </tbody>
-                    </template>
-                </v-simple-table>
+                    <v-simple-table dense>
+                        <template v-slot:default>
+                            <tbody>
+                                <tr>
+                                    <td>총발생주식수</td>
+                                    <td>{{data.company_detail_info.tot_stock_cnt}}</td>
+                                    <td>유통주식수</td>
+                                    <td>{{data.company_detail_info.cir_stock_cnt}}</td>
+                                </tr>
+                                <tr>
+                                    <td>시가총액</td>
+                                    <td>{{data.company_detail_info.market_cap}}</td>
+                                    <td>유통비율</td>
+                                    <td>{{data.company_detail_info.cir_stock_ratio}}%</td>
+                                </tr>
+                                <tr>
+                                    <td>총거래량</td>
+                                    <td>{{data.max_info.tot_tr_quant}}</td>
+                                    <td>최대거래량</td>
+                                    <td>{{data.max_info.max_tr_quant}}</td>
+                                </tr>
+                                <tr>
+                                    <td>거래일자</td>
+                                    <td>{{data.max_info.max_tr_date}}</td>
+                                    <td>최대거래비율</td>
+                                    <td>{{data.max_info.max_tr_ratio}}%</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">총거래량 / 유통주식수</td>
+                                    <td colspan="2">{{ data.max_info.tot_cir_ratio }}%</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">최대거래량 / 유통주식수</td>
+                                    <td colspan="2">{{ data.max_info.max_cir_ratio }}%</td>
+                                </tr>
+                            </tbody>
+                        </template>
+                    </v-simple-table>
+                </v-card>
+                <br>
+                <v-card class="mx-auto" tile>
+                    <v-simple-table dense>
+                        <template v-slot:default>
+                            <tbody>
+                                <tr>
+                                    <td>rsi</td>
+                                    <td>{{data.rsi.rsi}}</td>
+                                    <td>e_rsi</td>
+                                    <td>{{data.rsi.e_rsi}}</td>
+                                    <td>→</td>
+                                    <td>{{data.rsi.result}}</td>
+                                </tr>
+                                <tr>
+                                    <td>bol_up</td>
+                                    <td>{{data.bol_20.bol_up_price}}</td>
+                                    <td>bol_down</td>
+                                    <td>{{data.bol_20.bol_dw_price}}</td>
+                                    <td>→</td>
+                                    <td>{{data.bol_20.result}}</td>
+                                </tr>
+                                <tr>
+                                    <td>macd</td>
+                                    <td>{{data.macd.macd}}</td>
+                                    <td>macd_signal</td>
+                                    <td>{{data.macd.macd_signal}}</td>
+                                    <td>→</td>
+                                    <td>{{data.macd.result}}</td>
+                                </tr>
+                                <tr>
+                                    <td>slow_k</td>
+                                    <td>{{data.stochastic.slow_k}}</td>
+                                    <td>slow_d</td>
+                                    <td>{{data.stochastic.slow_d}}</td>
+                                    <td>→</td>
+                                    <td>{{data.stochastic.result}}</td>
+                                </tr>
+                            </tbody>
+                        </template>
+                    </v-simple-table>
                 </v-card>
                 <br>
                 <v-card class="mx-auto" tile>
@@ -261,6 +302,10 @@ export default{
                 max_info: {},
                 company_detail_info: {},
                 transition: [],
+                rsi: {},
+                bol_20: {},
+                macd: {},
+                stochastic: {}
             },
             theme_score: 0,
             news_score: 0,
@@ -283,13 +328,73 @@ export default{
                 }
             })
             .then((result) =>{
-                console.log(result.data)
+                //console.log(result.data)
                 this.search_yn = true
                 this.data.pre_datas = this.data.datas
                 this.data.max_info = result.data.max_info
                 this.data.company_detail_info = result.data.company_detail_info
+                this.data.rsi = result.data.rsi
+                this.data.bol_20 = result.data.bol_20
+                this.data.macd = result.data.macd
+                this.data.stochastic = result.data.stochastic                
                 this.data.datas = result.data.result
                 this.data.transition = result.data.transition
+
+                var fin_amt = this.data.datas[8].value.split(":")[1].split("/")[0].replace(",","").trim()
+
+                // 통계값으로 예측하기
+                // 1.rsi
+                if(this.data.rsi.e_rsi <= 20){
+                    this.data.rsi.result = "매수"
+                }else if(this.data.rsi.e_rsi >= 80){
+                    this.data.rsi.result = "매도"
+                }else{
+                    this.data.rsi.result = "관망"
+                }
+
+                // 2.bollinger
+                if(this.data.bol_20.bol_dw_price >= fin_amt){
+                    this.data.bol_20.result = "매수"
+                }else if(this.data.bol_20.bol_up_price <= fin_amt){
+                    this.data.bol_20.result = "매도"
+                }else{
+                    this.data.bol_20.result = "관망"
+                }
+                this.data.bol_20.bol_up_price = numberWithCommas(this.data.bol_20.bol_up_price)
+                this.data.bol_20.bol_dw_price = numberWithCommas(this.data.bol_20.bol_dw_price)
+
+                // 3. macd
+                if(this.data.macd.macd >0){
+                    if(this.data.macd.macd_oscillator > 0){
+                        this.data.macd.result = "대세상승/골든크로스"
+                    }else{
+                        this.data.macd.result = "대세상승/데드크로스"
+                    }
+                }else{
+                    if(this.data.macd.macd_oscillator > 0){
+                        this.data.macd.result = "대세하락/골든크로스"
+                    }else{
+                        this.data.macd.result = "대세하락/데드크로스"
+                    }
+                }
+
+                // 4. stochastic
+                if(this.data.stochastic.slow_k <= 20){
+                    if( this.data.stochastic.slow_k > this.data.stochastic.slow_d){
+                        this.data.stochastic.result = "과매도/매수!"
+                    }else{
+                        this.data.stochastic.result = "과매도/관망"
+                    }
+                }else if(this.data.stochastic.slow_k >= 80){
+                    if( this.data.stochastic.slow_k > this.data.stochastic.slow_d){
+                        this.data.stochastic.result = "과매수/관망"
+                    }else{
+                        this.data.stochastic.result = "과매도/매도!"
+                    }
+                }else{
+                    this.data.stochastic.result = "관망"
+                }
+
                 for( var i = 0 ; i < this.data.datas.length ; i++ ){
                     this.data.datas[i].pre_value = this.data.pre_datas[i].value
                 }
@@ -485,7 +590,10 @@ export default{
             this.item_change()
             this.getInfo()
         }                                
-    }
+    },    
+}
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 </script>
 <style>

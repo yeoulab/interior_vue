@@ -11,11 +11,13 @@ import Stats from '../components/home/Stats'
 import Theme from '../components/home/Theme'
 import Company from '../components/home/Company'
 import Coin from '../components/home/Coin'
+import Factor from '../components/home/Factor'
 
 //import MyInfo from '../components/my/MyInfo'
 import Login from '../components/my/Login'
 import Register from '../components/my/Register'
 
+import Quant from '../components/common/Quant'
 import Door from '../components/common/Door'
 import Main from '../components/common/Main'
 import User from '../components/my/User'
@@ -32,6 +34,17 @@ export default new Router({
         },
         {   path: '/user', 
             component: User
+        },
+        {
+            path: '/quant',
+            component: Quant,
+            children: [{
+                path: 'factor',
+                component: Factor
+            }, {
+                path: 'coin',
+                component: Coin
+            }]
         },
         {
             path: '/main',
@@ -54,9 +67,6 @@ export default new Router({
             }, {
                 path: 'company',
                 component: Company,
-            }, {
-                path: 'coin',
-                component: Coin
             }]
         },
         {path: '/', component: Door},        

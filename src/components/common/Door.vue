@@ -53,7 +53,7 @@
                     }
                 }else if(input_value=="멍뭉이"){
                     if( this.pwd == "0410" ){
-                        this.$router.push("/main/home");
+                        this.$router.push("/quant/factor");
                     }
                 }else if(input_value=="치킨"){
                     if( this.pwd == "0109" ){

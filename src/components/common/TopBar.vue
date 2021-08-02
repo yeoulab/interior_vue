@@ -4,6 +4,7 @@
         src="https://picsum.photos/id/130/1920/1080"><!--130, 186-->
             <v-toolbar-title class="font-weight-bold black--text ml-2">{{ this.$store.state.pageName }}</v-toolbar-title>
             <v-spacer></v-spacer>
+
             <v-text-field 
                 v-if="searchOn == true && this.$store.state.pageName == '지도'"
                 dense
@@ -25,6 +26,12 @@
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
             </div>
+            <v-btn icon @click="$router.push('/main/home')">
+                <v-icon>mdi-door</v-icon>
+            </v-btn>
+            <v-btn icon @click="$router.push('/quant/factor')">
+                <v-icon>mdi-state-machine</v-icon>
+            </v-btn>            
             <!-- <template v-slot:extension>
                 <v-tabs align-with-title>
                     <v-tab>
