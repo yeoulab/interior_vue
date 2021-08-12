@@ -15,7 +15,7 @@
                 :items="factors"
                 class="elevation-1"
             >
-                <template v-slot:item.factor="props">
+                <template v-slot:[`item.factor`]="props">
                     <v-text-field
                     hide-details
                     v-model="props.item.factor"
@@ -23,7 +23,7 @@
                     outlined>
                     </v-text-field>
                 </template>
-                <template v-slot:item.type="props">
+                <template v-slot:[`item.type`]="props">
                     <v-text-field
                     hide-details
                     v-model="props.item.type"
@@ -31,7 +31,7 @@
                     outlined>
                     </v-text-field>
                 </template>
-                <template v-slot:item.value="props">
+                <template v-slot:[`item.value`]="props">
                     <v-text-field
                     hide-details
                     v-model="props.item.value"
@@ -40,7 +40,7 @@
                     dense
                     ></v-text-field>
                 </template>
-                <template v-slot:item.memo="props">
+                <template v-slot:[`item.memo`]="props">
                     <v-text-field
                     hide-details
                     v-model="props.item.memo"
@@ -48,7 +48,7 @@
                     dense
                     ></v-text-field>
                 </template>
-                <template v-slot:item.actions="{ item }">
+                <template v-slot:[`item.actions`]="{ item }">
                     <v-btn icon @click="del_factor(item)">
                         <v-icon>mdi-minus</v-icon>
                     </v-btn>

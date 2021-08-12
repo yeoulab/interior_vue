@@ -131,7 +131,7 @@
                 :items-per-page="1000"
                 hide-default-footer
             >
-                <template v-slot:item.actions="{ item }">
+                <template v-slot:[`item.actions`]="{ item }">
                     <v-btn icon color="purple">
                         <v-icon
                             @click="go_to_first(item)"

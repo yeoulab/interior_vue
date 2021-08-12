@@ -72,12 +72,12 @@
                 </v-dialog>
                 <!-- </v-toolbar> -->
             </template>
-            <template v-slot:item.jongmok_info="{ item }">
+            <template v-slot:[`item.jongmok_info`]="{ item }">
                 <v-btn text color="pink">
                   {{ item.jongmok_info }}
                 </v-btn>
             </template>  
-            <template v-slot:item.actions="{ item }">              
+            <template v-slot:[`item.actions`]="{ item }">              
                 <v-btn
                     icon
                     color="blue">
