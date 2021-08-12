@@ -94,7 +94,10 @@
                 this.setDialog(true)
                 axios.post('/coin')
                 .then(res =>{
-                    this.console(res)
+                    console.log(res)
+                    if( res.status == "200" ){
+                        alert(res.statusText)
+                    }
                     this.setDialog(false)
                 })
             }

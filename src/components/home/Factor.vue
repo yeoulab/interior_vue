@@ -1,13 +1,13 @@
 <template>
     <v-container>
         <div>
-            <v-btn icon>
+            <v-btn x-large icon @click="get_factor">
                 <v-icon>mdi-magnify</v-icon>
             </v-btn>
-            <v-btn icon @click="adddata">
+            <v-btn x-large icon @click="adddata">
                 <v-icon>mdi-plus</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn x-large icon @click="set_factor">
                 <v-icon>mdi-content-save</v-icon>
             </v-btn>
             <v-data-table
@@ -48,26 +48,35 @@
                     dense
                     ></v-text-field>
                 </template>
+                <template v-slot:item.actions="{ item }">
+                    <v-btn icon @click="del_factor(item)">
+                        <v-icon>mdi-minus</v-icon>
+                    </v-btn>
+                </template>
             </v-data-table>
         </div>
     </v-container>
 </template>
 <script>
+import axios from 'axios'
+
 export default {
     data () {
         return {
-        headers: [
-            {
-            text: 'Factor',
-            align: 'left',
-            sortable: false,
-            value: 'factor',
-            },
-            { text: 'Type', value: 'factor' },
-            { text: 'Value', value: 'type' },
-            { text: 'Memo', value: 'memo' },
-        ],
-        factors: [],
+            dialog: false,
+            headers: [
+                {
+                text: 'Factor',
+                align: 'left',
+                sortable: false,
+                value: 'factor',
+                },
+                { text: 'Type', value: 'type' },
+                { text: 'Value', value: 'value' },
+                { text: 'Memo', value: 'memo' },
+                { text: '', value: 'actions' }
+            ],
+            factors: [],
         }
     },
     methods: {
@@ -79,7 +88,48 @@ export default {
                 memo: ""
             }
             this.factors.push(addValue)
-        }
+        },
+        get_factor(){
+            this.setDialog(true)
+                axios.get('/factor')
+                .then((result) =>{
+                    this.factors = result.data
+                    this.setDialog(false) 
+                })
+                .catch(error => {
+                    console.log(error.message)
+                    this.setDialog(false)
+                })
+        },
+        set_factor(){
+            this.setDialog(true)
+            axios.post('/factor', this.factors,                    
+                ).then(res => {
+                    if(res){
+                        this.get_factor()
+                        console.log(res)
+                        this.setDialog(false)
+                    }
+                })
+        },
+        del_factor(data){
+            this.setDialog(true)
+            console.log(data)
+            this.editedItem = Object.assign({}, data)
+            confirm("정말 삭제하시겠습니까?") &&
+                axios.delete('/factor',{
+                    params: {
+                        factor: this.editedItem.factor,
+                    }
+                }).then(res => {
+                        if(res){
+                            this.get_factor()
+                        }
+                    })
+        },
+        setDialog(boolean){
+            this.dialog = boolean
+        },
     },    
     mounted() {        
         this.$store.commit('setPageName',{
