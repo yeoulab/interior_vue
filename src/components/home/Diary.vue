@@ -40,6 +40,10 @@
                                     <v-flex xs4 sm4 md3>
                                         <v-text-field readonly :value=editedItem.start_date></v-text-field>
                                     </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field label="매수단가" :value=editedItem.buy_amt v-model=editedItem.buy_amt>
+                                        </v-text-field>
+                                    </v-flex>
                                     <v-flex xs12 style="height: 105px">
                                         <v-textarea label="매수이유" outlined rows="3" row-height="24"
                                                 :value=editedItem.buy_reason v-model=editedItem.buy_reason>
@@ -66,6 +70,7 @@
                         <v-card-actions>
                         <v-spacer></v-spacer>
                             <v-btn color="blue darken-1" @click="go_to_first(editedItem)">첫화면</v-btn>
+                            <v-btn color="blue darken-1" @click="closeDialog">닫기</v-btn>
                             <v-btn color="blue darken-1" @click="update_diary(editedItem)">Save</v-btn>
                         </v-card-actions>
                     </v-card>
@@ -75,8 +80,11 @@
             <template v-slot:[`item.jongmok_info`]="{ item }">
                 <v-btn text color="pink">
                   {{ item.jongmok_info }}
-                </v-btn>
-            </template>  
+                </v-btn>            
+            </template>
+            <template v-slot:[`item.buy_amt`]="{ header, item }"> 
+                <span>{{ header.formatter(item.buy_amt) }}</span>
+            </template> 
             <template v-slot:[`item.actions`]="{ item }">              
                 <v-btn
                     icon
@@ -163,6 +171,11 @@
                         value: 'jongmok_info',
                         align: 'left',
                     },
+                    {
+                        text: '단가',
+                        value: 'buy_amt',
+                        formatter: this.numberWithCommas
+                    },
                     { text: '점수(Y/Q)', value: 'score' , align: 'left'},
                     { text: 'Actions', value: 'actions', sortable: false},
                 ],
@@ -198,6 +211,7 @@
             },
             sell_item(data){
                 data.buy_yn=''
+                data.buy_amt=0
                 this.update_diary(data)
                 //this.get_diary()
             },
@@ -206,6 +220,9 @@
                 axios.put('/diary', data,                    
                     ).then(res => {
                         if(res){
+                            if(this.dialog == true){
+                                this.dialog = false
+                            }
                             this.get_diary()
                             console.log(res)
                         }
@@ -247,6 +264,12 @@
                 if( isStar > 0 ){
                     return 'green'
                 }
+            },
+            closeDialog(){
+                this.dialog = false
+            },
+            numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
         },
         mounted() {
@@ -263,7 +286,8 @@
         },
         watch: {
             dialog (val) {
-                val || this.close()
+                console.log(val)
+                //val || this.close()
             },
         },        
     }
