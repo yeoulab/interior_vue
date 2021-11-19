@@ -10,7 +10,7 @@
     "local": "vue-cli-service serve --mode local"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "core-js": "^3.4.4",
     "jquery": "^3.4.1",
     "stylus-loader": "^3.0.2",
