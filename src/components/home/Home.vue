@@ -9,11 +9,10 @@
                     ></v-progress-linear>
                 </div>
             </v-dialog>            
-            <v-row style="height: 50px;">
+            <v-row style="height: 40px;">
                 <v-col xs6 sm4 md3>
                     <v-text-field
-                        label="item name"
-                        outlined
+                        label="Name"
                         dense
                         v-model="item_name"
                         @change="item_name_change">
@@ -21,8 +20,7 @@
                 </v-col>
                 <v-col xs6 sm4 md3>
                     <v-text-field 
-                        label="item code" 
-                        outlined 
+                        label="Code"  
                         dense
                         v-model="item_code"
                         @change="item_change">
@@ -30,8 +28,7 @@
                 </v-col>
                 <v-col>
                     <v-text-field 
-                        label="start date" 
-                        outlined 
+                        label="Date" 
                         dense
                         v-model="start_date"
                         v-on:keyup.enter="getInfo">
@@ -41,18 +38,26 @@
             <!-- 2020-05-23
                  last date 의 미사용으로 주석처리            
             -->
-            <v-row class="mb-1">                
-                <v-col xs3 sm3 md3>
-                    <v-btn class="mx-0" small @click="getFinInfo">뉴스/공시</v-btn>
+            <v-row style="height: 70px;">                
+                <v-col>
+                    <v-btn x-large icon @click="getFinInfo">
+                        <v-icon>mdi-newspaper</v-icon>
+                    </v-btn>
                 </v-col>
-                <v-col xs3 sm3 md3>
-                    <v-btn small @click="getCompInfo">재무정보</v-btn>
+                <v-col>
+                <v-btn x-large icon @click="getCompInfo">
+                    <v-icon>mdi-cash-100</v-icon>
+                </v-btn>
                 </v-col>
-                <v-col xs3 sm3 md3>
-                    <v-btn small @click="insert_diary">일기장</v-btn>
+                <v-col>
+                <v-btn x-large icon @click="insert_diary">
+                    <v-icon>mdi-cart</v-icon>
+                </v-btn>
                 </v-col>
-                <v-col xs3 sm3 md3>
-                    <v-btn small color="success" @click="getInfo">Call Api</v-btn>
+                <v-col>
+                <v-btn x-large icon @click="getInfo">
+                    <v-icon>mdi-api</v-icon>
+                </v-btn>
                 </v-col>
             </v-row>
             <v-row v-show=false> <!-- 2020/07/18 사용하지 않아 삭제함 -->
@@ -597,4 +602,13 @@ function numberWithCommas(x) {
 }
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css?family=Sunflower:500');
+
+html, body {
+  font-family: 'Sunflower', sans-serif;
+}
+ 
+#app {
+  font-family: 'Sunflower', sans-serif;
+}
 </style>

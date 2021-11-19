@@ -8,8 +8,8 @@
                 ></v-progress-linear>
             </div>
         </v-dialog>         
-        <v-row>
-            <v-col cols="8" style="height: 50px;">
+        <v-row style="height: 45px;">
+            <v-col>
                 <v-text-field 
                     label="배치 일자" 
                     outlined 
@@ -17,11 +17,20 @@
                     v-model="tr_date">
                 </v-text-field>
             </v-col>
-            <v-col cols="1">
+            <v-col>
                 <v-btn class="mx-2" fab dark small  @click="get_statistic">
                     <v-icon>mdi-magnify</v-icon>
                 </v-btn>
             </v-col>
+            <v-col><v-text-field dense v-model="tr_from" label="거래량"></v-text-field></v-col>
+        </v-row>
+        <v-row style="height: 55px;">
+            <v-col><v-text-field v-model="profit_ratio_fr" label="수익률"></v-text-field></v-col>
+            <v-col><v-text-field v-model="profit_ratio_to" label="수익률"></v-text-field></v-col>
+            <v-col><v-text-field v-model="cir_ratio_fr" label="회전률"></v-text-field></v-col>
+            <v-col><v-text-field v-model="cir_ratio_to" label="회전률"></v-text-field></v-col>
+            <v-col><v-text-field v-model="ind_ratio_fr" label="개인"></v-text-field></v-col>
+            <v-col><v-text-field v-model="ind_ratio_to" label="개인"></v-text-field></v-col>            
         </v-row>
         <v-text-field
             v-model="search"
@@ -72,6 +81,13 @@ export default {
             tr_date: '',
             max_cir_ratio: 0,
             tot_cir_ratio: 0,
+            cir_ratio_fr: 200,
+            cir_ratio_to: 400,
+            ind_ratio_fr: 50,
+            ind_ratio_to: 200,
+            tr_from: 100000,
+            profit_ratio_fr: 0,
+            profit_ratio_to: 50,
             // 아래는 데이터테이블을 위한 변수들
             search: '',
             mobileBreakpoint: 1000,
@@ -106,7 +122,14 @@ export default {
                     item: this.item_code,
                     tr_date: this.tr_date,
                     max_cir_ratio: this.max_cir_ratio,
-                    tot_cir_ratio: this.tot_cir_ratio
+                    tot_cir_ratio: this.tot_cir_ratio,
+                    cir_ratio_fr: this.cir_ratio_fr,
+                    cir_ratio_to: this.cir_ratio_to,
+                    ind_ratio_fr: this.ind_ratio_fr,
+                    ind_ratio_to: this.ind_ratio_to,
+                    tr_from: this.tr_from,
+                    profit_ratio_fr: this.profit_ratio_fr,
+                    profit_ratio_to: this.profit_ratio_to     
                 }
             })
             .then((result => {

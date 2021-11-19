@@ -44,6 +44,10 @@
                                         <v-text-field label="매수단가" :value=editedItem.buy_amt v-model=editedItem.buy_amt>
                                         </v-text-field>
                                     </v-flex>
+                                    <v-flex xs12>
+                                        <v-text-field label="희망단가" :value=editedItem.interest_amt v-model=editedItem.interest_amt>
+                                        </v-text-field>
+                                    </v-flex>
                                     <v-flex xs12 style="height: 105px">
                                         <v-textarea label="매수이유" outlined rows="3" row-height="24"
                                                 :value=editedItem.buy_reason v-model=editedItem.buy_reason>

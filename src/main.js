@@ -11,11 +11,12 @@ Vue.config.productionTip = false
 
 //axios.defaults.baseURL = 'http://127.0.0.1:8070'; // java
 //axios.defaults.baseURL = 'http://127.0.0.1:8090'; // local-python
-axios.defaults.baseURL = 'http://13.125.241.42:8090'; // server-python
+
 axios.defaults.crossDomain = true;
 axios.defaults.withCredentials = true;
 
-if( process.env == 'local' ) axios.defaults.baseURL = 'http://127.0.0.1:8090'
+axios.defaults.baseURL = process.env.VUE_APP_URI
+console.log(process.env)
 
 /* vuex 설치 */
 /* vue-the-mask 설치 */

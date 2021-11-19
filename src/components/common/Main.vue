@@ -34,7 +34,7 @@ export default {
         links: [
           {btnName: 'mdi-home-variant-outline', text: '홈', route: '/main/home'},
           {btnName: 'mdi-chart-bell-curve-cumulative', text: '글로발', route: '/main/index'},
-          {btnName: 'mdi-file-document-edit', text: '끄적', route: '/main/diary'},
+          {btnName: 'mdi-cart', text: '카트', route: '/main/diary'},
           {btnName: 'mdi-clipboard-list-outline', text: '통계', route: '/main/stats'},
           {btnName: 'mdi-chart-gantt', text: '테마', route: '/main/theme'},
           //{btnName: 'mdi-city-variant', text: '테마관리', route: '/main/company'},
