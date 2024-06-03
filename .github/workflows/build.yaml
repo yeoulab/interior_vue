@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: node:10.18.1-alpine3.10
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
