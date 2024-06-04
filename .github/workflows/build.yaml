@@ -89,4 +89,4 @@ jobs:
         with:
           repository: yeoulab/k8s-manifest
           branch: main
-          github_token: ${{ secrets.ACTION_TOKEN }}
+          #github_token: ${{ secrets.ACTION_TOKEN }}
