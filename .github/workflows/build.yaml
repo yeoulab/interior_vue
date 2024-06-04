@@ -75,6 +75,6 @@ jobs:
         run: |
           cd k8s-manifest
           git config --global user.email "myungjin.shin@gmail.com"
-          git config --global user.name "yeoulab"
+          git config --global user.name "github-actions"
           git commit -am "Update image tag"
           git push -u origin main          
