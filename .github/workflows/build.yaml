@@ -66,7 +66,6 @@ jobs:
         with:
           repository: yeoulab/k8s-manifest
           ref: main
-          #token: $GH_ACTION_TOKEN
           path: k8s-manifest
 
       - name: Update Kubernetes resources
@@ -78,14 +77,14 @@ jobs:
           kustomize edit set image \${{ steps.login-ecr.outputs.registry}}/\${{ steps.image-info.outputs.ecr_repository }}=\${{ steps.login-ecr.outputs.registry}}/\${{ steps.image-info.outputs.ecr_repository }}:\${{ steps.image-info.outputs.image_tag }}
           cat kustomization.yaml
 
-      - name: Commit files
-        env: 
-          GH_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
-        run: |
+      - name: Config git
+        run: | 
           cd k8s-manifest
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-          git commit -am "Update image tag"
-          git remote remove origin
-          git remote add origin https://yeoulab:$GH_ACTION_TOKEN@github.com/yeoulab/k8s-manifest
-          git push -u origin main          
+
+      - name: Push main branch
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.ACTION_TOKEN }}
