@@ -53,11 +53,11 @@ jobs:
         uses: imranismail/setup-kustomize@v1
 
       - name: Checkout kustomize repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: yeoulab/k8s-manifest
           ref: main
-          #token: \${{ secrets.ACTION_TOKEN }}
+          token: \${{ secrets.ACTION_TOKEN }}
           path: k8s-manifest
 
       - name: Update Kubernetes resources
@@ -74,7 +74,7 @@ jobs:
           GH_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
         run: |
           cd k8s-manifest
-          git config --global user.email "myungjin.shin@gmail.com"
+          git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
           git commit -am "Update image tag"
           git push -u origin main          
