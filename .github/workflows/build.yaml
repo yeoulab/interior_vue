@@ -53,7 +53,7 @@ jobs:
         uses: imranismail/setup-kustomize@v1
 
       - name: Checkout kustomize repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: yeoulab/k8s-manifest
           ref: main
@@ -70,6 +70,8 @@ jobs:
           cat kustomization.yaml
 
       - name: Commit files
+        env: 
+          GH_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
         run: |
           cd k8s-manifest
           git config --global user.email "myungjin.shin@gmail.com"
