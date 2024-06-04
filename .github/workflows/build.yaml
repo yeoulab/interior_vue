@@ -68,6 +68,7 @@ jobs:
           ref: main
           token: $GH_ACTION_TOKEN
           path: k8s-manifest
+          persist-credentials: false
 
       - name: Update Kubernetes resources
         run: |
