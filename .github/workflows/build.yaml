@@ -58,7 +58,7 @@ jobs:
           repository: yeoulab/k8s-manifest
           ref: main
           #token: \${{ secrets.ACTION_TOKEN }}
-          path: k8s-manifest-repo
+          path: k8s-manifest
 
       - name: Update Kubernetes resources
         run: |
