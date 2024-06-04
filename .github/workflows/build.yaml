@@ -52,6 +52,13 @@ jobs:
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v1
 
+      - name: debug
+        id: debug
+        env: 
+          GH_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
+        run: |
+          echo "action-token: $GH_ACTION_TOKEN"
+
       - name: Checkout kustomize repository
         uses: actions/checkout@v4
         env: 
