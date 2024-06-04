@@ -54,10 +54,12 @@ jobs:
 
       - name: Checkout kustomize repository
         uses: actions/checkout@v4
+        env: 
+          GH_ACTION_TOKEN: ${{ secrets.ACTION_TOKEN }}
         with:
           repository: yeoulab/k8s-manifest
           ref: main
-          token: \${{ secrets.ACTION_TOKEN }}
+          token: $GH_ACTION_TOKEN
           path: k8s-manifest
 
       - name: Update Kubernetes resources
